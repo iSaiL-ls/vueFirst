@@ -1,0 +1,61 @@
+{
+  "data": [{
+      "id": 101,
+      "authName": "用户管理",
+      "path": null,
+      "children": [{
+        "id": 104,
+        "authName": "商品搜索",
+        "path": null,
+        "children": []
+      }]
+    },
+    {
+      "id": 102,
+      "authName": "权限管理",
+      "path": null,
+      "children": [{
+        "id": 204,
+        "authName": "商品搜索",
+        "path": null,
+        "children": []
+      }]
+    },
+    {
+      "id": 103,
+      "authName": "商品管理",
+      "path": null,
+      "children": [{
+        "id": 304,
+        "authName": "商品搜索",
+        "path": null,
+        "children": []
+      }]
+    },
+    {
+      "id": 104,
+      "authName": "订单管理",
+      "path": null,
+      "children": [{
+        "id": 404,
+        "authName": "商品搜索",
+        "path": null,
+        "children": []
+      }]
+    }, {
+      "id": 105,
+      "authName": "数据统计",
+      "path": null,
+      "children": [{
+        "id": 504,
+        "authName": "商品搜索",
+        "path": null,
+        "children": []
+      }]
+    }
+  ],
+  "meta": {
+    "msg": "获取菜单列表成功",
+    "status": 200
+  }
+}

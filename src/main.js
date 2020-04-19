@@ -8,6 +8,11 @@ import './assets/fonts/iconfont.css'
 import axios from 'axios'
 // 配置请求的根路径
 axios.defaults.baseURL = 'http://localhost:3000'
+axios.interceptors.request.use(config => {
+  config.headers.Authorization = window.sessionStorage.getItem('token')
+  // 固定写法 最后必须return config
+  return config
+})
 Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
