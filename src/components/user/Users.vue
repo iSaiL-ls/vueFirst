@@ -53,7 +53,12 @@
             ></el-button>
             <!-- 分配权限 -->
             <el-tooltip effect="dark" content="分配角色" placement="top" :enterable="false">
-              <el-button type="warning" icon="el-icon-s-tools" size="mini"></el-button>
+              <el-button
+                type="warning"
+                icon="el-icon-s-tools"
+                size="mini"
+                @click="setRole(scope.row)"
+              ></el-button>
             </el-tooltip>
           </template>
         </el-table-column>
@@ -115,10 +120,39 @@
         :total="total"
       ></el-pagination>
     </el-card>
+
+    <!-- 分配角色对话框 -->
+    <el-dialog
+      title="分配角色"
+      :visible.sync="setRoleDialogVisible"
+      width="50%"
+      @close="setRoleDialogClosed"
+    >
+      <div>
+        <p>当前的用户：{{userInfo.username}}</p>
+        <p>当前的角色：{{userInfo.role_name}}</p>
+        <p>
+          分配角色：
+          <el-select v-model="selectedRoleId" placeholder="请选择">
+            <el-option
+              v-for="item in rolesList"
+              :key="item.id"
+              :label="item.roleName"
+              :value="item.id"
+            ></el-option>
+          </el-select>
+        </p>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="setRoleDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="saveRoleInfo">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 <script>
 import usersList from '../../assets/json/usersList'
+import RolesList from '../../assets/json/RolesList'
 const userslist = usersList.data.users
 const editForm = usersList.data.editForm
 // console.log(userslist)
@@ -143,8 +177,15 @@ export default {
       cb(new Error('请输入合法手机号'))
     }
     return {
+      // 分配角色中已选中的角色的id值
+      selectedRoleId: '',
+      // 分配角色对话框里的下拉菜单
+      rolesList: [],
+      // 需要被分配角色的用户信息
+      userInfo: '',
+      // 控制分配角色对话框
+      setRoleDialogVisible: false,
       // 获取用户列表的参数对象
-
       queryInfo: {
         // 搜索框
         query: '',
@@ -204,7 +245,7 @@ export default {
   methods: {
     async getUserList () {
       console.log('huoqushuju ')
-
+      // 搜索的操作就是 置空搜索栏 然后通过绑定的搜索框消息去发参数
       // 因为没有后台所以使用假数据进行渲染
       // const { data: res } = this.$http.get('users', { params: this.queryInfo })
       // if (res.meta.status !== 200) return this.$message.error('获取用户列表失败')
@@ -250,7 +291,7 @@ export default {
         // const { data: res } = this.$http.post('users', this.addFrom)
         // if (res.meta.status !== 201) { this.$message.error('添加失败') }
         this.$message.success('添加成功')
-        this.addDialogVisible()
+        this.addDialogVisible = false
         this.getUserList()
         // 既可以发起添加用户的网络请求
       })
@@ -300,7 +341,38 @@ export default {
         return this.$message.error('就这点实力也想要删我？')
       }
       return this.$message.success('算你狠')
+    },
+    // 展示分配角色的对话框
+    async setRole (userInfo) {
+      this.userInfo = userInfo
+      // 在展示对话框之前 获取所有的用户角色列表
+      // const { data: res } = await this.$http.get('roles')
+      // if (res.meta.status !== 200) { return this.$message.error('获取角色列表失败') }
+      // this.rolesList = res.data
+      this.rolesList = RolesList.data
+      this.setRoleDialogVisible = true
+    },
+    // 点击确定按钮去分配角色
+    async saveRoleInfo () {
+      if (!this.selectedRoleId) {
+        return this.$message.error(`你是要大李赛呢
+      还是要小李赛呢
+      还是要小赛赛呢
+      你得选一个呢`)
+      }
+      // 日常注掉后台交互
+      // const { data: res } = await this.$http.put(`users/${this.userInfo.id}`, { rid: this.selectedRoleId })
+      // if (res.meta.status !== 200) { return this.$message.error('阿哦，你不配哦') }
+      this.$message.success('分配角色成功')
+      this.getUserList()
+      this.setRoleDialogVisible = false
+    },
+    // 监听分配角色对话框关闭事件
+    setRoleDialogClosed () {
+      // 重置这个让下拉菜单从新变为请选择
+      this.selectedRoleId = ''
     }
+
   }
 }
 </script>

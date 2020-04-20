@@ -82,9 +82,9 @@ export default {
         104: 'iconfont icon-order',
         105: 'iconfont icon-shuju'
       },
-      // 是否折叠是否折叠
+      // 是否折叠
       iscollapse: false,
-      // 被激活的链接地址被激活的链接地址
+      // 被激活的链接地址
       activePath: ''
 
     }
