@@ -44,7 +44,7 @@ module.exports = {
       }, {
         id: 306,
         authName: '商品分类',
-        path: null,
+        path: 'categories',
         children: []
       }]
     },
