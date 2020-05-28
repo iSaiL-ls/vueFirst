@@ -39,7 +39,7 @@ module.exports = {
       }, {
         id: 305,
         authName: '分类参数',
-        path: null,
+        path: 'params',
         children: []
       }, {
         id: 306,
