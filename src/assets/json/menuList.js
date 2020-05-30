@@ -55,7 +55,7 @@ module.exports = {
       children: [{
         id: 404,
         authName: '订单列表',
-        path: null,
+        path: 'orders',
         children: []
       }]
     }, {

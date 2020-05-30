@@ -39,7 +39,9 @@ import {
   Radio,
   RadioGroup,
   RadioButton,
-  Upload
+  Upload,
+  timeline,
+  TimelineItem
 } from 'element-ui'
 
 Vue.use(Button)
@@ -80,6 +82,8 @@ Vue.use(RadioGroup)
 Vue.use(Radio)
 Vue.use(RadioButton)
 Vue.use(Upload)
+Vue.use(timeline)
+Vue.use(TimelineItem)
 
 // 全局挂载
 Vue.prototype.$message = Message
