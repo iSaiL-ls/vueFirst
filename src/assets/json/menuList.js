@@ -64,8 +64,8 @@ module.exports = {
       path: null,
       children: [{
         id: 504,
-        authName: '商品搜索',
-        path: null,
+        authName: '数据报表',
+        path: 'reports',
         children: []
       }]
     }
