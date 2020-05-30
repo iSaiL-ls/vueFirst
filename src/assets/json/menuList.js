@@ -34,7 +34,7 @@ module.exports = {
       children: [{
         id: 304,
         authName: '商品列表',
-        path: null,
+        path: 'goods',
         children: []
       }, {
         id: 305,
